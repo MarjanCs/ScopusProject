@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <title>Scopus</title>
+</head>
+<script>
+    function highlightText(text, keyword) {
+      return text.replace(new RegExp(keyword, "gi"), '<span class="highlight">$&</span>');
+    }
+</script>
+
+<body style="background: linear-gradient(to right, #fff, #200122); ">
+    <h1 class="text-center" style="color:#fff">Consulta de datos de Scopus</h1>
+    <div>
+        <div class="container">
+            <div class="row" style="background: linear-gradient(to right, #fff, #fff); width: 80%; margin: 0 auto; border-radius: 40px;">
+                <div class="col-sm-6 col-md-5 col-lg-6">
+                    <form action="Consulta" method="post">
+                        <h2 class="text-center"style="color:#200122"><b>Seleccione el modo de busqueda</b></h2>
+                        <br>
+                        <div class="row">
+                            <div class="col-6" style="margin: 10px;">
+                                <select class="form-select" aria-label="Default select example" name="Seleccion" id="Seleccion" required>
+                                    <option selected>Seleccione la opción de busqueda</option>
+                                    <option value="Año">Año</option>
+                                    <option value="Keywords">Title</option>
+                                    <option value="DOI">DOI</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 10px;">
+                            <div class="col-6">
+                                <label for="exampleInput" class="form-label" style="color:#200122">Ingrese lo que desea buscar:</label>
+                                <input type="text" class="form-control" name="textoBuscar" required>
+                                <div class="form-text">Ingrese la palabra a buscar segun lo escogido.</div>
+                            </div>
+                        </div>
+                        <br>
+                        <div style="margin: 15px;display: flex; justify-content: center;">
+                            <input type="submit" class="btn btn-primary" value="Buscar" name="Buscar" style="background-color: #200122;
+                            margin-right: 10px"></input>
+                            <input type="reset" class="btn btn-danger" value="Resetear" style="background-color: #200122; 
+                            margin-left: 10px"></input>
+                        </div>
+                        <br>
+                    </form>
+                </div>
+                <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0">
+                    <div  >
+                        <form action="Datos" method="post">
+                            <h2 class="text-center"style="color:#200122"><b>Lista de autores con mas artículos</b></h2>
+                            <div style="margin: 15px;display: flex; justify-content: center;">
+                                <input type="submit" class="btn btn-primary" value="Presentar" name="Presentar" style="background-color: #200122;
+                                        margin-right: 10px"></input>
+                            </div>
+                        </form>
+                        <div>
+                            {% block content1 %} {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <h3 class="text-center" style="color:rgb(252, 252, 252)"><b>Resultados Encontrados</b></h3>
+        <div>
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+</body>
+</html>
